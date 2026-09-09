@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>TAZA — Freshness, Preserved.</title>
+  <meta
+    name="description"
+    content="TAZA — Naturally preserved foods, fruits, infusions and organic goodness. Coming soon."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #10150f;
+      --bg-soft: #182016;
+      --cream: #f4f0df;
+      --muted: #aeb6a0;
+      --green: #9bc65c;
+      --green-dark: #57723c;
+      --line: rgba(244, 240, 223, 0.13);
+      --glass: rgba(255,255,255,0.055);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(139, 182, 76, 0.14), transparent 30%),
+        radial-gradient(circle at 85% 70%, rgba(198, 152, 68, 0.08), transparent 28%),
+        var(--bg);
+      color: var(--cream);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* -------------------------
+       BACKGROUND
+    ------------------------- */
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    .orb.one {
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(132, 181, 65, 0.16), transparent 65%);
+      top: -180px;
+      left: -120px;
+      animation: float 10s ease-in-out infinite;
+    }
+
+    .orb.two {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(207, 163, 81, 0.09), transparent 68%);
+      right: -200px;
+      bottom: -200px;
+      animation: float 13s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate3d(0,0,0);
+      }
+      50% {
+        transform: translate3d(20px,-30px,0);
+      }
+    }
+
+    /* -------------------------
+       HEADER
+    ------------------------- */
+
+    header {
+      position: relative;
+      z-index: 5;
+      width: min(1240px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 28px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-mini {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+    }
+
+    .brand-mini span {
+      color: var(--green);
+    }
+
+    .location {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    /* -------------------------
+       HERO
+    ------------------------- */
+
+    main {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero {
+      min-height: calc(100vh - 80px);
+      width: min(1240px, calc(100% - 48px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 80px;
+      padding: 50px 0 90px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.23em;
+      color: var(--green);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: var(--green);
+    }
+
+    h1 {
+      font-size: clamp(90px, 15vw, 190px);
+      line-height: 0.77;
+      letter-spacing: -0.075em;
+      font-weight: 600;
+      margin-left: -9px;
+    }
+
+    h1 .italic {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: -0.08em;
+    }
+
+    .hero-copy {
+      margin-top: 45px;
+      max-width: 590px;
+    }
+
+    .hero-copy h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 1.05;
+      font-weight: 500;
+      max-width: 570px;
+    }
+
+    .hero-copy h2 em {
+      color: var(--green);
+    }
+
+    .hero-copy p {
+      margin-top: 22px;
+      max-width: 470px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* -------------------------
+       COMING SOON CARD
+    ------------------------- */
+
+    .right {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .coming-card {
+      width: min(430px, 100%);
+      padding: 34px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.075),
+          rgba(255,255,255,0.025)
+        );
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 30px;
+      box-shadow:
+        0 40px 100px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+      animation: cardIn 1s ease forwards;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 70px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--green);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 16px var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50% { opacity: .35; }
+    }
+
+    .card-number {
+      font-size: 11px;
+      color: #707969;
+      letter-spacing: .15em;
+    }
+
+    .card-title {
+      font-family: "Playfair Display", serif;
+      font-size: 46px;
+      line-height: 1.02;
+      font-weight: 500;
+    }
+
+    .card-title em {
+      color: var(--green);
+    }
+
+    .card-text {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      margin-top: 18px;
+    }
+
+    /* -------------------------
+       FORM
+    ------------------------- */
+
+    .notify {
+      display: flex;
+      margin-top: 30px;
+      padding: 5px;
+      border-radius: 15px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.18);
+    }
+
+    .notify input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--cream);
+      padding: 13px 14px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    .notify input::placeholder {
+      color: #737b6e;
+    }
+
+    .notify button {
+      border: 0;
+      cursor: pointer;
+      border-radius: 11px;
+      padding: 0 19px;
+      background: var(--green);
+      color: #15200e;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      transition: .25s ease;
+    }
+
+    .notify button:hover {
+      transform: translateY(-1px);
+      background: #b2dc6f;
+      box-shadow: 0 8px 25px rgba(155,198,92,.18);
+    }
+
+    .success {
+      display: none;
+      margin-top: 15px;
+      color: var(--green);
+      font-size: 12px;
+    }
+
+    /* -------------------------
+       PRODUCT PILLARS
+    ------------------------- */
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 38px;
+      border-top: 1px solid var(--line);
+      padding-top: 25px;
+      gap: 20px;
+    }
+
+    .pillar small {
+      display: block;
+      color: #687061;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: 9px;
+      margin-bottom: 7px;
+    }
+
+    .pillar strong {
+      font-size: 12px;
+      font-weight: 500;
+      color: #d7dccd;
+    }
+
+    /* -------------------------
+       BOTTOM MARQUEE
+    ------------------------- */
+
+    .marquee {
+      position: relative;
+      z-index: 4;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 17px 0;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      gap: 38px;
+      animation: marquee 24s linear infinite;
+    }
+
+    .marquee span {
+      font-family: "Playfair Display", serif;
+      font-size: 17px;
+      font-style: italic;
+      color: #78806f;
+    }
+
+    .marquee .star {
+      color: var(--green);
+      font-family: "DM Sans";
+      font-style: normal;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* -------------------------
+       FOOTER
+    ------------------------- */
+
+    footer {
+      width: min(1240px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 28px 0;
+      display: flex;
+      justify-content: space-between;
+      color: #697163;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+    }
+
+    /* -------------------------
+       RESPONSIVE
+    ------------------------- */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        padding-top: 40px;
+      }
+
+      .right {
+        justify-content: flex-start;
+      }
+
+      h1 {
+        font-size: clamp(85px, 24vw, 160px);
+      }
+
+      .coming-card {
+        max-width: 600px;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      header,
+      .hero,
+      footer {
+        width: min(100% - 32px, 1240px);
+      }
+
+      header {
+        padding-top: 20px;
+      }
+
+      .location {
+        font-size: 8px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 55px 0 70px;
+        gap: 55px;
+      }
+
+      h1 {
+        font-size: clamp(75px, 25vw, 120px);
+      }
+
+      .hero-copy {
+        margin-top: 30px;
+      }
+
+      .hero-copy h2 {
+        font-size: 36px;
+      }
+
+      .coming-card {
+        padding: 25px;
+        border-radius: 24px;
+      }
+
+      .card-top {
+        margin-bottom: 50px;
+      }
+
+      .card-title {
+        font-size: 39px;
+      }
+
+      .pillars {
+        gap: 12px;
+      }
+
+      .pillar strong {
+        font-size: 10px;
+      }
+
+      .notify {
+        flex-direction: column;
+        gap: 6px;
+        padding: 6px;
+      }
+
+      .notify input {
+        height: 46px;
+      }
+
+      .notify button {
+        height: 44px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="noise"></div>
+
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand-mini">
+      TAZA<span>®</span>
+    </div>
+
+    <div class="location">
+      Made in Bangladesh · Coming Soon
+    </div>
+  </header>
+
+
+  <!-- MAIN -->
+  <main>
+
+    <section class="hero">
+
+      <!-- LEFT -->
+      <div class="left">
+
+        <div class="eyebrow">
+          A new way to preserve goodness
+        </div>
+
+        <h1>
+          TAZ<span class="italic">A</span>
+        </h1>
+
+        <div class="hero-copy">
+
+          <h2>
+            Freshness, <em>preserved.</em>
+          </h2>
+
+          <p>
+            From the finest fruits and botanicals to everyday organic
+            goodness — TAZA is creating a new generation of naturally
+            inspired foods, thoughtfully made in Bangladesh.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- RIGHT -->
+      <div class="right">
+
+        <div class="coming-card">
+
+          <div class="card-top">
+
+            <div class="status">
+              <span class="status-dot"></span>
+              Coming Soon
+            </div>
+
+            <div class="card-number">
+              01 / 01
+            </div>
+
+          </div>
+
+
+          <div class="card-title">
+            Something<br>
+            <em>fresh</em> is coming.
+          </div>
+
+          <p class="card-text">
+            Join our early list and be among the first to discover
+            TAZA — naturally preserved fruits, botanical infusions
+            and a growing collection of better everyday foods.
+          </p>
+
+
+          <form
+            class="notify"
+            onsubmit="subscribe(event)"
+          >
+
+            <input
+              id="email"
+              type="email"
+              placeholder="Your email address"
+              required
+            />
+
+            <button type="submit">
+              Notify me
+            </button>
+
+          </form>
+
+          <div class="success" id="success">
+            ✓ You're on the list. See you soon.
+          </div>
+
+
+          <div class="pillars">
+
+            <div class="pillar">
+              <small>01</small>
+              <strong>Real Ingredients</strong>
+            </div>
+
+            <div class="pillar">
+              <small>02</small>
+              <strong>Thoughtfully Made</strong>
+            </div>
+
+            <div class="pillar">
+              <small>03</small>
+              <strong>From Bangladesh</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+
+      <div class="marquee-track">
+
+        <span>Fruits</span>
+        <span class="star">✦</span>
+
+        <span>Botanicals</span>
+        <span class="star">✦</span>
+
+        <span>Infusions</span>
+        <span class="star">✦</span>
+
+        <span>Organic Goodness</span>
+        <span class="star">✦</span>
+
+        <span>Natural Foods</span>
+        <span class="star">✦</span>
+
+        <span>Fruits</span>
+        <span class="star">✦</span>
+
+        <span>Botanicals</span>
+        <span class="star">✦</span>
+
+        <span>Infusions</span>
+        <span class="star">✦</span>
+
+        <span>Organic Goodness</span>
+        <span class="star">✦</span>
+
+        <span>Natural Foods</span>
+        <span class="star">✦</span>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div>
+      © 2026 TAZA
+    </div>
+
+    <div>
+      taza.bd
+    </div>
+
+    <div>
+      Bangladesh
+    </div>
+
+  </footer>
+
+
+  <script>
+    function subscribe(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email");
+      const success = document.getElementById("success");
+
+      if (!email.value) return;
+
+      success.style.display = "block";
+      email.value = "";
+
+      setTimeout(() => {
+        success.style.display = "none";
+      }, 5000);
+    }
+  </script>
+
+</body>
+</html>
